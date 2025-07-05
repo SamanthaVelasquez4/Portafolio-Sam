@@ -1,0 +1,39 @@
+---
+img: '/img/infraestructure.avif'
+screenshots: ['/img/infraestructure1.png', '/img/infraestructure2.png']
+---
+
+El objetivo del proyecto fue diseñar e implementar una arquitectura escalable y resiliente en la nube para 
+una plataforma de e-commerce. La solución debía garantizar una excelente experiencia de usuario, procesamiento 
+eficiente de transacciones, integración con servicios de notificación, y capacidades analíticas avanzadas para la 
+toma de decisiones empresariales. Se implementó una arquitectura event-driven y serverless para procesar tareas en segundo plano 
+(como la confirmación de compras o actualización de inventario) de manera asincrónica, usando Azure 
+Functions conectadas a colas de mensajes. Esto permitió desacoplar los procesos críticos y mejorar la eficiencia 
+operativa.
+
+## La infraestructura se dividió en tres repositorios Terraform para mantener una organización modular:
+
+<li>Repositorio 1: Datos y almacenamiento (SQL Server, Redis, Blob y Queue Storage).</li>
+>https://github.com/SamanthaVelasquez4/Terraform-Proyect-Repository-1
+<li>Repositorio 2: Aplicaciones (front y back office, API, funciones, contenedores).</li>
+>
+<li>Repositorio 3: Analítica (Data Factory y Data Warehouse).</li>
+>https://github.com/SamanthaVelasquez4/Terraform-Proyect-Repository-3
+
+## Experiencia adquirida
+Este proyecto me permitió aplicar y profundizar en conocimientos clave de infraestructura como código (IaC), 
+diseño de arquitecturas en la nube y automatización de servicios distribuidos. Aprendí a:
+
+<li>Diseñar soluciones modulares y escalables en Azure.</li>
+
+<li>Optimizar recursos usando servicios como Azure Functions y Redis.</li>
+
+<li>Orquestar flujos de datos ETL con Data Factory y estructurar soluciones analíticas.</li>
+
+<li>Trabajar con arquitecturas desacopladas orientadas a eventos.</li>
+
+<li>Organizar un proyecto profesional en múltiples repositorios, aplicando buenas prácticas de DevOps.</li>
+
+<li>Esta experiencia consolidó mi capacidad para diseñar soluciones cloud completas que combinan eficiencia técnica, 
+escalabilidad y visión de negocio.</li>
+

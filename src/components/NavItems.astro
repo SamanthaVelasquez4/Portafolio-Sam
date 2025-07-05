@@ -1,0 +1,23 @@
+---
+import type { NavItems } from '../interfaces/Interface';
+
+interface Props {
+    navItems: NavItems[],
+}
+
+const {navItems} = Astro.props;
+---
+
+
+{
+    navItems.map(element => (
+        <a 
+            href={element.href} 
+            class='nav-link'
+        >
+            {element.name}
+        </a>
+    ))
+}
+
+

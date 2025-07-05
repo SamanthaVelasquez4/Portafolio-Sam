@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import HomeSection from '../components/HomeSection.astro';
+import AboutSection from '../components/AboutSection.astro';
+import SkillSection from '../components/SkillSection.astro';
+import Projects from '../components/Projects.astro';
+import ExperienceSection from '../components/ExperienceSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import Footer from '../components/Footer.astro';
+
+import { homeInfo } from '../content/db/homeInfo';
+import { projects } from '../content/db/projects';
+import { experiences } from '../content/db/experiences';
+
+const recentProjects = projects.slice(-3); // Get the last 3 projects
+---
+
+<Layout>
+	<!-- Header -->
+    <Header/>
+
+    <!-- Home Section -->
+    <HomeSection
+        homeInfo={homeInfo}
+    />
+
+    <!-- About me Section -->
+    <AboutSection/>
+
+    <!-- Skill Section-->
+    <SkillSection/>
+
+    <!-- Recent projects -->
+     <section id="projects" class="section-padding" style="background-color: var(--bg-secondary);">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text fade-in">Proyectos Recientes</h2>
+            
+            <Projects
+                containerClass="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto",
+                iconClass="h-48 bg-gradient-to-br rounded-xl mb-6 flex items-center justify-center text-white text-4xl",
+                titleClass="text-xl font-bold mb-3",
+                descriptionClass="mb-4",
+                teconologiesDivClass="flex flex-wrap gap-2 mb-4",
+                projects={recentProjects}
+            />
+
+            <!-- View All Projects Button -->
+            <div class="text-center mt-12 fade-in">
+                <a id="view-all-projects" class="inline-flex items-center px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold hover:scale-105 transition-transform" href="/all-projects">
+                    Ver Todos los Proyectos
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <ExperienceSection
+        experiences={experiences}
+    />
+
+    <!-- contact Section -->
+    <ContactSection
+        email={homeInfo.email}
+        phone={homeInfo.phone}
+        location={homeInfo.location}
+    />
+    <!-- Footer -->
+     <Footer
+     rights = "© 2025 Dorian Contreras. Todos los derechos reservados."
+     />
+
+    <script>
+		import "../scripts/script.js";
+	</script>
+</Layout>

@@ -1,0 +1,63 @@
+---
+import type { ExperienceItem } from '../interfaces/Interface';
+
+interface Props {
+    experiences: ExperienceItem[],
+}
+
+const {experiences} = Astro.props;
+---
+
+<section id="experience" class="section-padding">
+    <div class="container mx-auto px-6">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text fade-in">Experiencia</h2>
+        
+        <div class="max-w-4xl mx-auto">
+            <div class="timeline">
+                {
+                    experiences.map(experience=>(
+                        <div class="timeline-item fade-in">
+                            <div class="timeline-marker">
+                                <div class="timeline-dot"></div>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-card">
+                                    <div class="flex items-start justify-between mb-4">
+                                        <div>
+                                            <h3 class="text-xl font-bold mb-1">{experience.position}</h3>
+                                            <h4 class="text-lg font-semibold mb-2" style="color: var(--primary-color);">{experience.company}</h4>
+                                            <p class="text-sm" style="color: var(--text-secondary);">{experience.location}</p>
+                                        </div>
+                                        <div class="timeline-date">
+                                            <span class="px-3 py-1 rounded-full text-sm font-medium" style="background-color: var(--primary-color); color: white;">
+                                                {experience.startDate} - {experience.endDate}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <ul class="space-y-2 mb-4">
+                                        {
+                                            experience.achievements.map(achievement => (
+                                                <li class="flex items-start space-x-2">
+                                                    <i class="fas fa-check-circle text-green-500 mt-1 text-sm"></i>
+                                                    <span class="text-sm" style="color: var(--text-secondary);">{achievement}</span>
+                                                </li>
+                                            ))
+                                        }
+                                    </ul>
+                                    <div class="flex flex-wrap gap-2">
+                                        {
+                                            experience.skills.map(skill => (
+                                                <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">{skill}</span>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>

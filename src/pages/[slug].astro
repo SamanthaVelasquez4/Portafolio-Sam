@@ -1,0 +1,155 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeaderProject from '../components/HeaderProject.astro';
+
+import { getCollection } from 'astro:content';
+import { projects as projectData } from '../content/db/projects';
+
+import type {Project} from '../interfaces/Interface';
+
+export async function getStaticPaths() {
+  const mdxProjects = await getCollection('projects');
+  
+  return mdxProjects.map((mdxProject: any) => {
+    // Encuentra los datos adicionales que coincidan por slug
+    const additionalData = projectData.find(
+      (proj) => proj.mdx === mdxProject.slug
+    );
+    
+    return {
+      params: { slug: mdxProject.slug },
+      props: {
+        mdxContent: mdxProject,
+        additionalData: additionalData || null,
+      },
+    };
+  });
+}
+
+interface Props {
+    mdxContent: {
+        slug: string;
+        data: {
+            img: string;
+            screenshots: string[];
+        };
+        render: () => Promise<{ Content: any}>;
+    },
+    additionalData: Project;
+}
+
+const { mdxContent, additionalData } = Astro.props;
+const { Content } = await mdxContent.render();
+---
+
+<Layout>
+    <HeaderProject href="/all-projects" />
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16">
+        <div class="container mx-auto px-6">
+            <!-- Project Header -->
+            <div id="project-header" class="max-w-6xl mx-auto mb-12">
+                <div class="fade-in">
+                    <div class="text-center mb-8">
+                        <div class={`inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r ${additionalData.gradient} text-white text-3xl mb-6`}>
+                            <i class={additionalData.icon}></i>
+                        </div>
+                        <h1 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">{additionalData.title}</h1>
+                        
+                        <div class="flex flex-wrap justify-center gap-3 mb-8">
+                            {
+                                additionalData.technologies.map(tech => (
+                                    <span class="tech-badge px-4 py-2 rounded-full text-sm font-medium">{tech}</span>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Image -->
+            <div class="project-image rounded-2xl overflow-hidden mb-8 cursor-pointer" 
+                onclick=`openImageModal('${mdxContent.data.img}')`>
+                <img src={mdxContent.data.img} alt={additionalData.title} 
+                    class="w-full h-96 object-cover">
+            </div>
+
+            <!-- Project Content -->
+            <div id="project-content" class="max-w-6xl mx-auto prose">
+                <Content />
+
+                <!-- Screenshots -->
+                <div class="info-card rounded-2xl p-8 fade-in">
+                    <h2 class="text-2xl font-bold mb-6">Imagenes</h2>
+                    <div class="screenshot-gallery">
+                        {mdxContent.data.screenshots.map(screenshot =>
+                            <div class="screenshot-item" onclick={`openImageModal('${screenshot}')`}>
+                                <img src={screenshot} alt="Screenshot" class="w-full h-full object-cover">
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Image Modal -->
+    <div id="image-modal" class="modal">
+        <div class="modal-content">
+            <img id="modal-image" src={mdxContent.data.img} alt="" class="w-full h-full object-cover">
+        </div>
+        <button id="close-modal" class="absolute top-4 right-4 text-white text-2xl hover:scale-110 transition-transform">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <script is:inline>
+        //Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            
+            if (theme === 'dark') {
+                themeIcon.className = 'fas fa-sun';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+            }
+        }
+
+        // Initialize theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        });
+
+        // Open image modal
+        function openImageModal(imageSrc) {
+            const modal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+            modalImage.src = imageSrc;
+            modal.classList.add('active');
+        }
+
+        // Close image modal
+        function closeImageModal() {
+            const modal = document.getElementById('image-modal');
+            modal.classList.remove('active');
+        }
+
+        // Modal event listeners
+        document.getElementById('close-modal').addEventListener('click', closeImageModal);
+        document.getElementById('image-modal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closeImageModal();
+            }
+        });
+    </script>
+</Layout>

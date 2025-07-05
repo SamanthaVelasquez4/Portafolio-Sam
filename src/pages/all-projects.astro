@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Projects from '../components/Projects.astro';
+import HeaderProject from '../components/HeaderProject.astro';
+
+import { projects } from '../content/db/projects';
+---
+
+<Layout>
+    <!-- Header -->
+    <HeaderProject
+        href="/"
+    />
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16">
+        <div class="container mx-auto px-6">
+            <!-- Page Title -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">Mis Proyectos</h1>
+                <p class="text-xl" style="color: var(--text-secondary);">
+                    Archivo completo: una colección de mis trabajos y experimentos
+                </p>
+            </div>
+
+            <!-- Projects Grid -->
+            <Projects
+                containerClass="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto",
+                iconClass="h-40 rounded-xl mb-4 flex items-center justify-center text-white text-3xl bg-gradient-to-br",
+                titleClass="text-lg font-bold mb-2",
+                descriptionClass="text-sm mb-4",
+                teconologiesDivClass="flex flex-wrap gap-2",
+                projects={projects}
+            />
+        </div>
+    </main>
+
+    <script src="../scripts/projects.js"></script>
+</Layout>

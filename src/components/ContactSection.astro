@@ -1,0 +1,83 @@
+---
+interface Props{
+    email: string,
+    phone: string,
+    location: string
+}
+
+const {email, phone, location} = Astro.props;
+---
+
+<section id="contact" class="section-padding" style="background-color: var(--bg-secondary);">
+    <div class="container mx-auto px-6">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text fade-in">Contactame</h2>
+        
+        <div class="max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-6">Trabajemos juntos</h3>
+                    <p class="text-lg mb-8" style="color: var(--text-secondary);">
+                        Siempre estoy interesada en nuevos proyectos y ideas.
+                        Discutamos las podemos transformar en soluciones tecnologicas.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Email</div>
+                                <div style="color: var(--text-secondary);">{email}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-teal-600 flex items-center justify-center text-white">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Teléfono</div>
+                                <div style="color: var(--text-secondary);">{phone}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-orange-500 to-red-600 flex items-center justify-center text-white">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Ubicación</div>
+                                <div style="color: var(--text-secondary);">{location}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in">
+                    <form class="space-y-6">
+                        <div>
+                            <input type="text" placeholder="Nombre" 
+                                    class="w-full px-4 py-3 rounded-lg border transition-all duration-300 focus:outline-none focus:ring-2"
+                                    style="background-color: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Email" 
+                                    class="w-full px-4 py-3 rounded-lg border transition-all duration-300 focus:outline-none focus:ring-2"
+                                    style="background-color: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);">
+                        </div>
+                        <div>
+                            <textarea placeholder="Mensaje" rows="5" 
+                                        class="w-full px-4 py-3 rounded-lg border transition-all duration-300 focus:outline-none focus:ring-2 resize-none"
+                                        style="background-color: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);"></textarea>
+                        </div>
+                        <button type="submit" 
+                                class="w-full py-3 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold hover:scale-105 transition-transform">
+                            Enviar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

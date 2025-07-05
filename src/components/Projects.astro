@@ -1,0 +1,46 @@
+---
+import type { Project } from '../interfaces/Interface';
+
+interface Props {
+    containerClass: string,
+    iconClass: string,
+    titleClass: string,
+    descriptionClass: string,
+    teconologiesDivClass: string,
+    projects: Project[],
+}
+
+const {containerClass, iconClass, titleClass, descriptionClass, teconologiesDivClass, projects} = Astro.props;
+const reversedProjects = [...projects].reverse();
+---
+
+
+<div class={containerClass}>
+    {
+        reversedProjects.map(element => (
+            <a href={`/${element.mdx}`} class="h-full">
+                <div class="project-card rounded-2xl p-6 fade-in h-full flex flex-col">
+                    <div class={iconClass + " "+ element.gradient}>
+                        <i class={element.icon}></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class={titleClass}>{element.title}</h3>
+                        <p class={descriptionClass} style="color: var(--text-secondary);">
+                            {element.description}
+                        </p>
+                    </div>
+                    <div class={teconologiesDivClass}>
+                        {
+                            element.technologies.map(tech => (
+                                <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">{tech}</span>
+                            ))
+                        }
+                        
+                    </div>
+                </div>
+            </a>
+             
+
+        ))
+    }   
+</div>
