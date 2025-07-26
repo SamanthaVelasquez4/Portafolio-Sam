@@ -80,16 +80,18 @@ const { Content } = await mdxContent.render();
                 <Content />
 
                 <!-- Screenshots -->
-                <div class="info-card rounded-2xl p-8 fade-in">
-                    <h2 class="text-2xl font-bold mb-6">Imagenes</h2>
-                    <div class="screenshot-gallery">
-                        {mdxContent.data.screenshots.map(screenshot =>
-                            <div class="screenshot-item" onclick={`openImageModal('${screenshot}')`}>
-                                <img src={screenshot} alt="Screenshot" class="w-full h-full object-cover">
+                {mdxContent.data.screenshots && mdxContent.data.screenshots.length > 0 && (
+                        <div class="info-card rounded-2xl p-8 fade-in">
+                            <h2 class="text-2xl font-bold mb-6">Imagenes</h2>
+                            <div class="screenshot-gallery">
+                                {mdxContent.data.screenshots.map(screenshot =>
+                                    <div class="screenshot-item" onclick={`openImageModal('${screenshot}')`}>
+                                        <img src={screenshot} alt="Screenshot" class="w-full h-full object-cover">
+                                    </div>
+                                )}
                             </div>
-                        )}
-                    </div>
-                </div>
+                        </div>
+                    )}
             </div>
         </div>
     </main>

@@ -4,17 +4,17 @@ export const hardSkills:Skill[] = [
     {
         name: "SQL",
         percentage: 95,
-        color: "#06B6D4" 
+        color: "#8B5CF6" 
     },
     {
         name: "PL/SQL",
         percentage: 93,
-        color: "#F59E0B" 
+        color: "#8B5CF6" 
     },
     {
         name: "JavaScript",
         percentage: 90,
-        color: "#3B82F6" 
+        color: "#8B5CF6" 
     },
     {
         name: "Oracle",
@@ -24,12 +24,12 @@ export const hardSkills:Skill[] = [
     {
         name: "Java",
         percentage: 80,
-        color: "#ECFF53" 
+        color: "#8B5CF6" 
     },
     {
         name: "Node.js",
         percentage: 75,
-        color: "#EF4444" 
+        color: "#8B5CF6" 
     },
     {
         name: "PHP",
@@ -39,16 +39,16 @@ export const hardSkills:Skill[] = [
     {
         name: "C++",
         percentage: 70,
-        color: "#1BBB86" 
+        color: "#8B5CF6" 
     },
     {
         name: "MongoDB",
         percentage: 67,
-        color: "#E74320" 
+        color: "#8B5CF6" 
     },
     {
         name: "Springboot",
         percentage: 65,
-        color: "#3B82F6" 
+        color: "#8B5CF6" 
     }
 ]
