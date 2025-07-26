@@ -72,5 +72,14 @@ export const projects: Project[] = [
         icon: "fas fa-cloud-upload-alt",
         gradient: "from-pink-500 to-rose-600",
         mdx: "infraestructure-ecommerce"
+    },
+    {
+        id: 9,
+        title: "Creación de un Pipeline de Datos y API con Caché Inteligente",
+        description: "Solución integral de backend con capacidad de migrar datos a gran escala, exponerlos a través de una API segura y optimizada desplegada en un entorno de nube productivo. Además incluye la implementación de un sistema de monitoreo y una estrategia de caché con invalidación automática.",
+        technologies: ["Azure","Terraform","FastApi"],
+        icon: "fas fa-cubes",
+        gradient: "from-emerald-500 to-teal-600",
+        mdx: "api-redis-cache"
     }
 ]
