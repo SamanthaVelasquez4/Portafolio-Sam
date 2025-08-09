@@ -81,5 +81,14 @@ export const projects: Project[] = [
         icon: "fas fa-cubes",
         gradient: "from-emerald-500 to-teal-600",
         mdx: "api-redis-cache"
+    },
+    {
+        id: 10,
+        title: "Evolución del Generador de Reportes V1",
+        description: "Aplicación web que genera reportes CSV desde la PokeAPI, integrando Azure Functions, Blob Storage y SQL Database. Implementación de eliminación segura de reportes, enriquecimiento de datos (estadísticas de Pokémon) y muestreo aleatorio.",
+        technologies: ["Azure","Terraform","FastApi", "Next.js", "Python"],
+        icon: "fas fa-globe",
+        gradient: "from-violet-500 to-purple-600",
+        mdx: "poke-queue"
     }
 ]

@@ -1,0 +1,60 @@
+---
+img: '/img/pokeQueue.jpg'
+screenshots: ['/img/pokeQueue1.png', '/img/pokeQueue2.png', '/img/pokeQueue3.png','/img/pokeQueue4.png', '/img/pokeQueue5.png']
+---
+## Descripción de proyecto
+Desarrollé y mejoré una aplicación web en la nube llamada "Generador de Reportes", diseñada para crear 
+reportes CSV basados en datos de la PokeAPI. La aplicación cuenta con una arquitectura moderna y desacoplada, 
+integrando tecnologías frontend, backend y servicios en la nube de Azure. Mi rol consistió en extender las 
+funcionalidades del sistema, garantizando su correcto despliegue y operatividad en Azure.
+
+## Arquitectura y Tecnologías Clave
+<li>Frontend: Next.js (React) para una interfaz interactiva y receptiva.</li>
+
+<li>Backend: API RESTful construida con FastAPI (Python) y desplegada en Azure App Service.</li>
+
+<li>Procesamiento Asíncrono: Azure Functions (Python) con Queue Trigger para manejar tareas en segundo plano.</li>
+
+<li>Almacenamiento: Azure Blob Storage (archivos CSV) y Azure Queue Storage (mensajes).</li>
+
+<li>Base de Datos: Azure SQL Database para gestionar los reportes y metadatos.</li>
+
+<li>Infraestructura como Código (IaC): Terraform para automatizar el despliegue de recursos en Azure.</li>
+
+<li>API Externa: Integración con PokeAPI para obtener datos de Pokémon.</li>
+
+## Funcionalidades Implementadas
+
+**Eliminación Completa de Reportes**
+
+<li>Frontend: Añadí un botón de eliminación con confirmación modal en la tabla de reportes, conectado a un nuevo endpoint en la API.</li>
+
+<li>Backend: Implementé un endpoint DELETE /api/report/\{report_id\} que elimina registros de la base de datos y los archivos CSV asociados en Blob Storage, manejando errores como registros no encontrados o fallos en la eliminación.</li>
+
+**Enriquecimiento de Reportes con Detalles de Pokémon**
+
+<li>Worker (Azure Function): Modifiqué el proceso para realizar llamadas adicionales a la PokeAPI, extrayendo estadísticas base
+(HP, Ataque, Defensa, etc.) y habilidades de cada Pokémon.</li>
+
+<li>CSV: Amplié el DataFrame (Pandas) para incluir nuevas columnas con estos datos, optimizando la representación de listas .</li>
+
+**Muestreo Aleatorio en Reportes**
+
+<li>Frontend: Integré un campo de entrada numérica en el formulario para limitar el número de registros en el reporte.</li>
+
+<li>Backend: Extendí el endpoint de creación para aceptar el parámetro sample_size y almacenarlo en la base de datos.</li>
+
+<li>Worker: Implementé lógica con random.sample() para seleccionar registros aleatorios antes de generar el CSV, manteniendo la 
+integridad de los datos.</li>
+
+## Habilidades desarrolladas
+
+<li>Desarrollo fullstack con Next.js y FastAPI.</li>
+
+<li>Integración de servicios en la nube (Azure Functions, Blob Storage, SQL Database).</li>
+
+<li>Manejo de datos asíncronos y procesamiento en segundo plano.</li>
+
+<li>Automatización de infraestructura con Terraform.</li>
+
+<li>Resolución de problemas complejos en entornos distribuidos.</li>
